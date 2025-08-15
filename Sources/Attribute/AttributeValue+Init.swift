@@ -36,13 +36,22 @@ public extension AttributeValue {
         self.init(type: attribute.type, value: attribute.value)
     }
 
-    convenience init(rows: [ListRow]) {
-        let attribute = AttributeValue.companion.fromRows(value: rows)
+    convenience init(rows: [String]) {
+        let attribute = AttributeValue.companion.fromListRows(values: rows)
         self.init(type: attribute.type, value: attribute.value)
     }
 
-    convenience init(row: ListRow) {
-        let attribute = AttributeValue.companion.fromRow(value: row)
+    convenience init(row: String) {
+        let attribute = AttributeValue.companion.fromListRow(value: row)
+        self.init(type: attribute.type, value: attribute.value)
+    }
+    
+    convenience init(start: Foundation.Date, end: Foundation.Date, calendar: Calendar = .current) {
+        let attribute = AttributeValue.companion.fromTimeInterval(
+            start: .init(date: start, calendar: calendar),
+            end: .init(date: end, calendar: calendar)
+        )
+        
         self.init(type: attribute.type, value: attribute.value)
     }
 }

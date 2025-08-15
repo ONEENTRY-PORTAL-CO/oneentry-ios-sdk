@@ -55,9 +55,8 @@ let package = Package(
         .package(url: "https://github.com/socketio/socket.io-client-swift", .upToNextMinor(from: "16.1.1")),
     ],
     targets: [
-        // Targets are the basic building blocks of a package, defining a module or a test suite.
-        // Targets can depend on other targets in this package and products from dependencies.
-        .sharedRemote(version: "2.0.1", checksum: "3e5ed0af26df4529a73fdee0fd96f3ae57659e95ddecdd2fb1f8f4939dee63cc"),
+//        .sharedRemote(version: "2.0.1", checksum: "3e5ed0af26df4529a73fdee0fd96f3ae57659e95ddecdd2fb1f8f4939dee63cc"),
+        .sharedLocalDebug(),
         .core,
         .pages,
         .attribute,
