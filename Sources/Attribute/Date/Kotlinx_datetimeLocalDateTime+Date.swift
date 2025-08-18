@@ -16,6 +16,10 @@ public extension Kotlinx_datetimeLocalDateTime {
             from: date
         )
         
+        self.init(components: components)
+    }
+    
+    convenience init(components: DateComponents) {
         self.init(
             year: Int32(components.year ?? 0),
             month: Int32(components.month ?? 0),

@@ -80,7 +80,7 @@ let package = Package(
         .testEvents(),
     ]
 )
-// MARK: Kotlin Multiplatform
+// MARK: - Kotlin Multiplatform
 extension Target {
     static func sharedLocalDebug() -> Target {
         .binaryTarget(

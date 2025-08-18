@@ -46,10 +46,10 @@ public extension AttributeValue {
         self.init(type: attribute.type, value: attribute.value)
     }
     
-    convenience init(start: Foundation.Date, end: Foundation.Date, calendar: Calendar = .current) {
+    convenience init(start: DateComponents, end: DateComponents) {
         let attribute = AttributeValue.companion.fromTimeInterval(
-            start: .init(date: start, calendar: calendar),
-            end: .init(date: end, calendar: calendar)
+            start: .init(components: start),
+            end: .init(components: end)
         )
         
         self.init(type: attribute.type, value: attribute.value)
