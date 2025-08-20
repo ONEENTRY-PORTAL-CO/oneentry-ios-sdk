@@ -55,8 +55,8 @@ let package = Package(
         .package(url: "https://github.com/socketio/socket.io-client-swift", .upToNextMinor(from: "16.1.1")),
     ],
     targets: [
-//        .sharedRemote(version: "2.0.1", checksum: "3e5ed0af26df4529a73fdee0fd96f3ae57659e95ddecdd2fb1f8f4939dee63cc"),
-        .sharedLocalDebug(),
+        .sharedRemote(version: "2.0.2", checksum: "cdb6a45d51da7afe9c560ed7fe477220feef3eeedde62ede8acc2198136567de"),
+//        .sharedLocalDebug(),
         .core,
         .pages,
         .attribute,
