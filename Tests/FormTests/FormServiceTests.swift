@@ -7,6 +7,7 @@
 
 import Testing
 
+import OneEntryFoundationTests
 import OneEntryAttribute
 import OneEntryShared
 import OneEntryForm
@@ -14,9 +15,11 @@ import OneEntryCore
 
 struct FormServiceTests {
     init() async throws {
+        let config = try TestConfig.load()
+        
         OneEntryApp.shared.initialize(
-            host: "hummel-mobile.oneentry.cloud",
-            token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiS290bGluIE11bHRpcGxhdGZvcm0iLCJzZXJpYWxOdW1iZXIiOjMsImlhdCI6MTczNTMyMjQ2NywiZXhwIjoxNzY2ODU4NDQ4fQ.3YZHZ39povhcmUpUAgMiD5b4NuZ9zK5ThObVYqkmvuk"
+            host: config.host,
+            token: config.token
         ) {
             LogLevel(.all)
         }
@@ -26,8 +29,15 @@ struct FormServiceTests {
     func sendData() async throws {                
         let home = "home"
         let comment = "comment"
-        
-        let entity = try await FormsService.shared.sendData(formIdentifier: "delivery") {
+        let formIdentifier = "delivery"
+        let form = try await FormsService.shared.form(marker: formIdentifier, langCode: "langCode")
+        let config = try #require(form.moduleFormConfigs?.randomElement())
+        let entityIdentifier = try #require(config.entityIdentifiers?.randomElement())
+        let entity = try await FormsService.shared.sendData(
+            formIdentifier: formIdentifier,
+            formModuleConfigId: Int(config.id),
+            moduleEntityIdentifier: entityIdentifier.id)
+        {
             Locale("en_US") {
                 FormData(marker: "address", attribute: .init(string: home))
                 FormData(marker: "comment", attribute: .init(string: comment))

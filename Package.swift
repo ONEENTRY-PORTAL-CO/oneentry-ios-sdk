@@ -55,8 +55,8 @@ let package = Package(
         .package(url: "https://github.com/socketio/socket.io-client-swift", .upToNextMinor(from: "16.1.1")),
     ],
     targets: [
-        .sharedRemote(version: "2.0.2", checksum: "cdb6a45d51da7afe9c560ed7fe477220feef3eeedde62ede8acc2198136567de"),
-//        .sharedLocalDebug(),
+//        .sharedRemote(version: "2.0.2", checksum: "cdb6a45d51da7afe9c560ed7fe477220feef3eeedde62ede8acc2198136567de"),
+        .sharedLocalDebug(),
         .core,
         .pages,
         .attribute,
@@ -78,6 +78,7 @@ let package = Package(
         .testAttributesSets(),
         .testPayments(),
         .testEvents(),
+        .testFoundation(),
     ]
 )
 // MARK: - Kotlin Multiplatform
@@ -291,12 +292,13 @@ extension Target {
             name: "OneEntryFormTests",
             dependencies: [
                 "OneEntryForm",
-                "OneEntryAttribute"
+                "OneEntryAttribute",
+                "OneEntryFoundationTests",
             ],
             path: "./Tests/FormTests",
             resources: [
                 .process("../Resources/custom_certificate.p12"),
-                .process("../Resources/system_certificate.p12")
+                .process("../Resources/system_certificate.p12"),
             ]
         )
     }
@@ -372,6 +374,16 @@ extension Target {
                 "OneEntryAuth"
             ],
             path: "./Tests/EventsTests"
+        )
+    }
+    
+    static func testFoundation() -> Target {
+        .target(
+            name: "OneEntryFoundationTests",
+            path: "./Tests/Foundation",
+            resources: [
+                .process("./Resources")
+            ]
         )
     }
 }
