@@ -13,11 +13,11 @@ public protocol PaymentAccountSettings: Sendable {
     associatedtype Connected
     associatedtype NotConnected
     
-    var settings: Connected { get throws(PaymentAccountConnectionError) }
+    var connected: Connected { get throws(PaymentAccountConnectionError) }
 }
 
 public extension PaymentAccountSettings where Connected: PaymentAccountSettings, NotConnected: PaymentAccountSettings {
-    var settings: Connected {
+    var connected: Connected {
         get throws(PaymentAccountConnectionError) {
             switch self {
                 case let settings as Connected:

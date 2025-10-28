@@ -38,8 +38,9 @@ struct StorageServiceTests {
             }
         }
     }
-    
+        
     @Test
+    @available(iOS 16.0, *)
     func content() async throws {
         for file in storage {
             let filename = try #require(file.filename().split(separator: "-").first)

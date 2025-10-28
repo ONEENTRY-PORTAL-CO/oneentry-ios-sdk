@@ -417,8 +417,10 @@ extension Target {
         .testTarget(
             name: "OneEntryPaymentTests",
             dependencies: [
-                "OneEntryShared",
                 "OneEntryAuth",
+                "OneEntryShared",
+                "OneEntryPayments",
+                "OneEntryFoundationTests",
             ],
             path: "./Tests/PaymentTests"
         )
