@@ -14,42 +14,16 @@ let package = Package(
     ],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
-        .library(
-            name: "OneEntryCore",
-            targets: ["OneEntryCore", "OneEntryAttribute", "OneEntryShared"]
-        ),
-        .library(
-            name: "OneEntryPages",
-            targets: ["OneEntryPages", "OneEntryCore", "OneEntryAttribute", "OneEntryShared"]
-        ),
-        .library(
-            name: "OneEntryForm",
-            targets: ["OneEntryForm", "OneEntryCore", "OneEntryAttribute", "OneEntryShared"]
-        ),
-        .library(
-            name: "OneEntryCatalog",
-            targets: ["OneEntryCatalog", "OneEntryCore", "OneEntryAttribute", "OneEntryShared"]
-        ),
-        .library(
-            name: "OneEntryAuth",
-            targets: ["OneEntryAuth", "OneEntryForm", "OneEntryCore", "OneEntryShared"]
-        ),
-        .library(
-            name: "OneEntryOrders",
-            targets: ["OneEntryOrders", "OneEntryForm", "OneEntryAttribute", "OneEntryCore", "OneEntryShared"]
-        ),
-        .library(
-            name: "OneEntryStorage",
-            targets: ["OneEntryStorage", "OneEntryCore", "OneEntryShared"]
-        ),
-        .library(
-            name: "OneEntryAttributesSets",
-            targets: ["OneEntryAttributesSets", "OneEntryAttribute", "OneEntryCore", "OneEntryShared"]
-        ),
-        .library(
-            name: "OneEntryEvents",
-            targets: ["OneEntryShared", "OneEntryCore", "OneEntryEvents", "OneEntryAuth"]
-        )
+        .core(),
+        .pages(),
+        .forms(),
+        .catalog(),
+        .auth(),
+        .orders(),
+        .storage(),
+        .attributesSets(),
+        .events(),
+        .payments(),
     ],
     dependencies: [
         .package(url: "https://github.com/socketio/socket.io-client-swift", .upToNextMinor(from: "16.1.1")),
@@ -68,6 +42,7 @@ let package = Package(
         .storage(),
         .attributesSets(),
         .events(),
+        .payments(),
         .testCore,
         .testAttribute,
         .testCatalog(),
@@ -81,6 +56,80 @@ let package = Package(
         .testFoundation(),
     ]
 )
+
+// MARK: - Libraries
+extension Product {
+    static func core() -> Product {
+        .library(
+            name: "OneEntryCore",
+            targets: ["OneEntryCore", "OneEntryAttribute", "OneEntryShared"]
+        )
+    }
+    
+    static func pages() -> Product {
+        .library(
+            name: "OneEntryPages",
+            targets: ["OneEntryPages", "OneEntryCore", "OneEntryAttribute", "OneEntryShared"]
+        )
+    }
+    
+    static func forms() -> Product {
+        .library(
+            name: "OneEntryForm",
+            targets: ["OneEntryForm", "OneEntryCore", "OneEntryAttribute", "OneEntryShared"]
+        )
+    }
+    
+    static func catalog() -> Product {
+        .library(
+            name: "OneEntryCatalog",
+            targets: ["OneEntryCatalog", "OneEntryCore", "OneEntryAttribute", "OneEntryShared"]
+        )
+    }
+    
+    static func auth() -> Product {
+        .library(
+            name: "OneEntryAuth",
+            targets: ["OneEntryAuth", "OneEntryForm", "OneEntryCore", "OneEntryShared"]
+        )
+    }
+
+    static func orders() -> Product {
+        .library(
+            name: "OneEntryOrders",
+            targets: ["OneEntryOrders", "OneEntryForm", "OneEntryAttribute", "OneEntryCore", "OneEntryShared"]
+        )
+    }
+
+    static func storage() -> Product {
+        .library(
+            name: "OneEntryStorage",
+            targets: ["OneEntryStorage", "OneEntryCore", "OneEntryShared"]
+        )
+    }
+
+    static func attributesSets() -> Product {
+        .library(
+            name: "OneEntryAttributesSets",
+            targets: ["OneEntryAttributesSets", "OneEntryAttribute", "OneEntryCore", "OneEntryShared"]
+        )
+    }
+
+    static func events() -> Product {
+        .library(
+            name: "OneEntryEvents",
+            targets: ["OneEntryShared", "OneEntryCore", "OneEntryEvents", "OneEntryAuth"]
+        )
+    }
+    
+    static func payments() -> Product {
+        .library(
+            name: "OneEntryPayments",
+            targets: ["OneEntryPayments", "OneEntryCore", "OneEntryShared"]
+        )
+    }
+}
+
 // MARK: - Kotlin Multiplatform
 extension Target {
     static func sharedLocalDebug() -> Target {
@@ -210,6 +259,17 @@ extension Target {
                 "OneEntryCore",
             ],
             path: "./Sources/Storage"
+        )
+    }
+    
+    static func payments() -> Target {
+        .target(
+            name: "OneEntryPayments",
+            dependencies: [
+                "OneEntryShared",
+                "OneEntryCore"
+            ],
+            path: "./Sources/Payments"
         )
     }
     
@@ -387,3 +447,4 @@ extension Target {
         )
     }
 }
+
