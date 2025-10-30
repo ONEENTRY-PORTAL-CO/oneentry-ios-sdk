@@ -10,6 +10,7 @@ import Testing
 import OneEntryStorage
 import OneEntryShared
 import OneEntryCore
+import OneEntryFoundationTests
 
 struct StorageServiceTests {
     var storage: [UploadResult] = []
@@ -21,9 +22,11 @@ struct StorageServiceTests {
     ]
     
     init() async throws {
+        let config = try TestConfig.load()
+        
         OneEntryApp.shared.initialize(
-            host: "hummel-mobile.oneentry.cloud",
-            token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiS290bGluIE11bHRpcGxhdGZvcm0iLCJzZXJpYWxOdW1iZXIiOjMsImlhdCI6MTczNTMyMjQ2NywiZXhwIjoxNzY2ODU4NDQ4fQ.3YZHZ39povhcmUpUAgMiD5b4NuZ9zK5ThObVYqkmvuk"
+            host: config.host,
+            token: config.token
         ) {
             LogLevel(.all)
         }

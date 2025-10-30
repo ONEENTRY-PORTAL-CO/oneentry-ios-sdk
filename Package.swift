@@ -303,7 +303,8 @@ extension Target {
         .testTarget(
             name: "OneEntryCoreTests",
             dependencies: [
-                "OneEntryCore"
+                "OneEntryCore",
+                "OneEntryFoundationTests",
             ],
             path: "./Tests/CoreTests",
             resources: [
@@ -321,6 +322,7 @@ extension Target {
             name: "OneEntryAttributeTests",
             dependencies: [
                 "OneEntryPages",
+                "OneEntryFoundationTests",
             ],
             path: "./Tests/AttributeTests",
             resources: [
@@ -337,7 +339,8 @@ extension Target {
         .testTarget(
             name: "OneEntryCatalogTests",
             dependencies: [
-                "OneEntryCatalog"
+                "OneEntryCatalog",
+                "OneEntryFoundationTests",
             ],
             path: "./Tests/CatalogTests",
             resources: [
@@ -368,7 +371,8 @@ extension Target {
             name: "OneEntryAuthTests",
             dependencies: [
                 "OneEntryAuth",
-                "OneEntryAttribute"
+                "OneEntryAttribute",
+                "OneEntryFoundationTests",
             ],
             path: "./Tests/AuthTests",
             resources: [
@@ -383,7 +387,8 @@ extension Target {
             name: "OneEntryOrdersTests",
             dependencies: [
                 "OneEntryOrders",
-                "OneEntryCatalog"
+                "OneEntryCatalog",
+                "OneEntryFoundationTests",
             ],
             path: "./Tests/OrdersTests",
             resources: [
@@ -397,7 +402,8 @@ extension Target {
         .testTarget(
             name: "OneEntryStorageTests",
             dependencies: [
-                "OneEntryStorage"
+                "OneEntryStorage",
+                "OneEntryFoundationTests",
             ],
             path: "./Tests/StorageTests"
         )
@@ -407,7 +413,8 @@ extension Target {
         .testTarget(
             name: "OneEntryAttributesSetsTests",
             dependencies: [
-                "OneEntryAttributesSets"
+                "OneEntryAttributesSets",
+                "OneEntryFoundationTests",
             ],
             path: "./Tests/AttributesSetsTests"
         )
@@ -433,7 +440,8 @@ extension Target {
                 "OneEntryShared",
                 "OneEntryEvents",
                 "OneEntryCatalog",
-                "OneEntryAuth"
+                "OneEntryAuth",
+                "OneEntryFoundationTests",
             ],
             path: "./Tests/EventsTests"
         )
